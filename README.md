@@ -1,4 +1,4 @@
-# Farhad Chichgar — Terminal Portfolio
+# Farhad Chichgar — Portfolio
 
 Terminal-inspired portfolio for a quantitative finance candidate. Built with Next.js 16 (App Router), Tailwind CSS, and Framer Motion—exportable as a fully static site for GitHub Pages.
 
