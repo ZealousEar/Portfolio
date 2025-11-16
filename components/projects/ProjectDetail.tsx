@@ -14,6 +14,18 @@ type ProjectDetailProps = {
   codeSample?: CodeSample;
 };
 
+function formatDate(value?: string) {
+  if (!value) return "--";
+  try {
+    return new Intl.DateTimeFormat("en", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }).format(new Date(value));
+  } catch {
+    return value;
+  }
+}
 
 export default function ProjectDetail({ project, contentHtml, codeSample }: ProjectDetailProps) {
   const commits = project.commits ?? [];
