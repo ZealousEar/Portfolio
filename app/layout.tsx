@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Permanent_Marker } from "next/font/google";
 import "./globals.css";
 import "@/styles/terminal.css";
 
@@ -9,9 +9,16 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-terminal",
 });
 
+const permanentMarker = Permanent_Marker({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-handwritten",
+});
+
 export const metadata: Metadata = {
-  title: "Farhad Chichgar | Quantitative Finance Portfolio",
-  description: "Terminal-inspired quantitative finance portfolio for Farhad Chichgar.",
+  title: "Farhad Chichgar's Portfolio",
+  description: "Quantitative finance portfolio for Farhad Chichgar.",
   keywords: [
     "quantitative finance",
     "systematic trading",
@@ -19,7 +26,7 @@ export const metadata: Metadata = {
     "machine learning",
     "portfolio",
   ],
-  authors: [{ name: "ZealousEar" }],
+  authors: [{ name: "Farhad Chichgar" }],
 };
 
 export default function RootLayout({
@@ -30,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-terminal-bg">
       <body
-        className={`${jetbrainsMono.variable} bg-terminal-bg text-terminal-primary font-mono antialiased`}
+        className={`${jetbrainsMono.variable} ${permanentMarker.variable} bg-terminal-bg text-terminal-primary font-mono antialiased`}
       >
         {children}
       </body>

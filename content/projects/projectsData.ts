@@ -1,8 +1,16 @@
 export type ProjectSlug =
-  | "derivx-fic-analytics"
-  | "fred-md"
   | "hull-tactical"
-  | "horse-racing";
+  | "derivx-fic-analytics"
+  | "fpl-optimization"
+  | "fred-md"
+  | "horse-racing"
+  | "career-rag-pipeline";
+
+type ProjectStats = {
+  languages: string;
+  timeline?: string;
+  status?: string;
+};
 
 export type ProjectCommit = {
   sha: string;
@@ -20,11 +28,7 @@ export type ProjectMetadata = {
   title: string;
   shortDesc: string;
   tags: string[];
-  stats: {
-    language: string;
-    forks: string;
-    updated: string;
-  };
+  stats: ProjectStats;
   ui: {
     hover: "green" | "cyan";
     header: string;
@@ -33,77 +37,156 @@ export type ProjectMetadata = {
   content: {
     overview: string;
     keyFeatures: string[];
-    technicalDetails?: Record<string, string | number>;
     detailedDescription: string;
-    challenges?: string;
     methodology?: string;
-    dataEngineering?: string;
     results?: string;
   };
   commits?: ProjectCommit[];
 };
 
 export const projectsData: Record<ProjectSlug, ProjectMetadata> = {
+  "hull-tactical": {
+    slug: "hull-tactical",
+    github: {
+      owner: "ZealousEar",
+      repo: "hull-tactical-market-prediction",
+    },
+    title: "Hull Tactical S&P 500 Directional Prediction [IN PROGRESS]",
+    shortDesc:
+      "Building ensemble models for daily S&P 500 return prediction in active Kaggle competition. Implementing feature engineering from market indicators including volatility regimes, cross-asset correlations and macroeconomic signals. Experimenting with XGBoost, neural networks and regime-switching models.",
+    tags: [
+      "ENSEMBLE METHODS",
+      "FEATURE ENGINEERING",
+      "TIME SERIES",
+      "XGBOOST",
+      "KAGGLE COMPETITION"
+    ],
+    stats: {
+      languages: "Python",
+      status: "Status: In Progress",
+      timeline: "Started: SEP 2025",
+    },
+    ui: {
+      hover: "cyan",
+      header: "┌─[hull-tactical]──────────────┐",
+      content: [
+        "│ > Kaggle Competition          │",
+        "│ > Ensemble Modelling         │",
+        "│ > S&P 500 Direction          │",
+        "│ [ENTER] View Details         │",
+        "└──────────────────────────────┘",
+      ].join("\n"),
+    },
+    content: {
+      overview:
+        "Building ensemble models for daily S&P 500 return prediction in an active Kaggle competition, combining engineered market indicators with stacked learning architectures.",
+      keyFeatures: [
+        "Feature engineering across volatility regimes, cross-asset correlations, and macroeconomic signals",
+        "Model experimentation with XGBoost, neural networks, and regime-switching ensembles",
+        "Daily prediction pipeline targeting robust directional signals for the S&P 500",
+      ],
+      detailedDescription:
+        "This project focuses on translating rich market structure insights into predictive features for daily S&P 500 direction, aligning Kaggle competition execution with institutional research-grade experimentation.",
+      methodology:
+        "Volatility regime tagging, cross-asset correlation windows, macro signal integration, and stacked ensembles combining tree-based and neural networks.",
+      results:
+        "Current iteration in progress with active offline validation and live Kaggle leaderboard tracking.",
+    },
+  },
   "derivx-fic-analytics": {
     slug: "derivx-fic-analytics",
     github: {
       owner: "ZealousEar",
       repo: "derivx-fic-analytics",
     },
-    title: "PROJECT 1: Fixed-Income/FX Derivatives Pricing Platform",
+    title: "Fixed-Income/FX Derivatives Pricing Platform",
     shortDesc:
-      "Production-ready pricing platform for interest rate derivatives and FX options with volatility surface calibration and live Greeks computation",
-    tags: ["Python", "C++", "Stochastic Calculus", "Monte Carlo", "Risk Management"],
+      "Built production-ready pricing engine for interest rate swaps, FX options and structured products. Implemented curve construction (OIS/IRS), SABR/SVI volatility calibration and risk metrics (PV, DV01) under rate shock scenarios. Interactive 3D volatility surface visualization with scenario analysis.",
+    tags: [
+      "STOCHASTIC CALCULUS",
+      "MONTE CARLO",
+      "SABR MODEL",
+      "BLACK-SCHOLES",
+      "RISK ANALYTICS",
+      "STREAMLIT"
+    ],
     stats: {
-      language: "Python",
-      forks: "12",
-      updated: "2024-08-15",
+      languages: "Python",
+      timeline: "Updated: OCT 2025",
     },
     ui: {
       hover: "green",
-      header: "┌─[derivx-fic-analytics]─────┐",
+      header: "┌─[derivx-fic-analytics]──────┐",
       content: [
-        "│ > Fixed Income Analytics    │",
-        "│ > Derivatives Pricing       │",
-        "│ > Risk Management          │",
-        "│ [ENTER] View Details       │",
+        "│ > Curve Construction        │",
+        "│ > Vol Surface Calibration   │",
+        "│ > Risk Analytics            │",
+        "│ [ENTER] View Details        │",
         "└────────────────────────────┘",
       ].join("\n"),
     },
     content: {
       overview:
-        "Production-ready pricing platform for interest rate derivatives and FX options with volatility surface calibration and live Greeks computation.",
+        "Production-grade pricing engine covering rate swaps, FX options, and structured notes with full volatility calibration and risk analytics.",
       keyFeatures: [
-        "Black-Scholes and Heston model implementations",
-        "Monte Carlo simulation with variance reduction",
-        "Greeks calculation and hedging strategies",
-        "Yield curve construction and bootstrapping",
-        "VaR and CVaR risk metrics",
+        "Curve construction for OIS/IRS with multi-currency support",
+        "SABR and SVI volatility surface calibration with scenario stress testing",
+        "Interactive 3D visualization surfaces and risk metric dashboards",
       ],
-      technicalDetails: {
-        architecture: "Microservices with REST API",
-        pricingSpeed: "<10ms for vanilla options",
-        throughput: "100,000+ scenarios per second",
-        accuracy: "99.97% vs Bloomberg BVAL",
-      },
-      detailedDescription: "{TODO: Provide detailed narrative about DerivX FIC Analytics}",
-      challenges: "{TODO: Highlight technical challenges and solutions}",
-      results: "{TODO: Quantitative impact and validation results}",
+      detailedDescription:
+        "Platform delivers institutional-grade valuations and risk metrics across fixed-income and FX derivatives with integrated scenario analysis and visualization tooling.",
+      methodology:
+        "Hybrid analytical/Monte Carlo valuation, volatility surface fitting, and rate shock stress testing embedded in a Streamlit control plane.",
+      results:
+        "Supports production runbooks for PV, DV01, and scenario-based risk reporting.",
     },
-    commits: [
-      {
-        sha: "a1b2c3d",
-        message: "Add callable bond analytics module",
-        date: "2024-08-14",
-        author: "ZealousEar",
-      },
-      {
-        sha: "d4e5f6a",
-        message: "Optimize Monte Carlo engine variance reduction",
-        date: "2024-07-28",
-        author: "ZealousEar",
-      },
+  },
+  "fpl-optimization": {
+    slug: "fpl-optimization",
+    github: {
+      owner: "ZealousEar",
+      repo: "fpl-optimization",
+    },
+    title: "Fantasy Premier League Optimization Engine",
+    shortDesc:
+      "Modified open-source solver to optimize team selection using University of Bristol HPC cluster for 1000s of Monte Carlo simulations. Achieved consistent top 1% performance (3 years running, peak rank 20k/10M players) through hyperparameter tuning of horizon values, transfer dynamics and bench weighting strategies.",
+    tags: [
+      "COMBINATORIAL OPTIMIZATION",
+      "MONTE CARLO",
+      "HPC",
+      "SENSITIVITY ANALYSIS",
+      "OPERATIONS RESEARCH"
     ],
+    stats: {
+      languages: "Python, C++",
+      timeline: "Active: SEP 2021 – PRESENT",
+    },
+    ui: {
+      hover: "cyan",
+      header: "┌─[fpl-optimization]────────┐",
+      content: [
+        "│ > Monte Carlo Planning      │",
+        "│ > HPC Optimisation          │",
+        "│ > FPL Strategy Engine       │",
+        "│ [ENTER] View Details        │",
+        "└────────────────────────────┘",
+      ].join("\n"),
+    },
+    content: {
+      overview:
+        "High-performance optimiser for Fantasy Premier League team selection delivering consistent top-percentile finishes through Monte Carlo planning and sensitivity analysis.",
+      keyFeatures: [
+        "Monte Carlo simulation on HPC cluster for lineup robustness",
+        "Hyperparameter tuning of horizon, transfers, and bench weighting",
+        "Custom heuristics layered on open-source solver core",
+      ],
+      detailedDescription:
+        "System combines aggressive simulation schedules with optimisation heuristics to maintain sustained top 1% rankings across multiple FPL seasons.",
+      methodology:
+        "Combines ILP/CP solvers, Monte Carlo sampling, and scenario weighting executed across University of Bristol HPC infrastructure.",
+      results:
+        "Peak rank 20k out of 10M players with three-year top 1% consistency.",
+    },
   },
   "fred-md": {
     slug: "fred-md",
@@ -111,107 +194,46 @@ export const projectsData: Record<ProjectSlug, ProjectMetadata> = {
       owner: "ZealousEar",
       repo: "fred-md",
     },
-    title: "PROJECT 2: Macroeconomic Forecasting with Dynamic Factor Models",
+    title: "Macroeconomic Forecasting with Dynamic Factor Models",
     shortDesc:
-      "Machine learning approach extracting 29 latent factors from 127 macroeconomic indicators achieving 84.6% R² with recession early-warning signals",
-    tags: ["Machine Learning", "Time Series", "Alpha Research", "R/Python", "Backtesting"],
-    stats: {
-      language: "Python/R",
-      forks: "9",
-      updated: "2024-07-22",
-    },
-    ui: {
-      hover: "cyan",
-      header: "┌─[fred-md]─────────────────┐",
-      content: [
-        "│ > Market Regime Detection   │",
-        "│ > Tactical Asset Allocation │",
-        "│ > Backtesting Framework    │",
-        "│ [ENTER] View Details       │",
-        "└────────────────────────────┘",
-      ].join("\n"),
-    },
-    content: {
-      overview:
-        "Machine learning approach extracting 29 latent factors from 127 macroeconomic indicators achieving 84.6% R² with recession early-warning signals.",
-      keyFeatures: [
-        "Hidden Markov model regime detection",
-        "Feature engineering from 200+ market indicators",
-        "Ensemble models (Random Forest, XGBoost, LSTM)",
-        "Walk-forward backtesting framework",
-        "Dynamic position sizing with Kelly Criterion",
-      ],
-      technicalDetails: {
-        sharpeRatio: "1.8",
-        annualizedReturn: "14.2%",
-        maxDrawdown: "12.3%",
-        hitRate: "62%",
-      },
-      detailedDescription: "{TODO: Provide methodology deep dive}",
-      methodology: "{TODO: Outline modelling and research process}",
-      results: "{TODO: Summarize backtesting highlights}",
-    },
-    commits: [],
-  },
-  "hull-tactical": {
-    slug: "hull-tactical",
-    github: {
-      owner: "ZealousEar",
-      repo: "hull-tactical-market-prediction",
-    },
-    title: "PROJECT 4: Hull Tactical Market Regime Prediction",
-    shortDesc: "Machine learning-driven market regime classification powering tactical asset allocation workflows",
-    tags: ["Machine Learning", "Time Series", "Trading Strategy", "Python", "R"],
-    stats: {
-      language: "Python/R",
-      forks: "9",
-      updated: "2024-07-22",
-    },
-    ui: {
-      hover: "cyan",
-      header: "┌─[hull-tactical]────────────┐",
-      content: [
-        "│ > Market Regime Detection   │",
-        "│ > Tactical Asset Allocation │",
-        "│ > Backtesting Framework    │",
-        "│ [ENTER] View Details       │",
-        "└────────────────────────────┘",
-      ].join("\n"),
-    },
-    content: {
-      overview:
-        "Implementation of Hull Tactical's regime classification framework with machine learning driven allocation rules.",
-      keyFeatures: [
-        "Hidden Markov model regime detection",
-        "Feature engineering from 200+ market indicators",
-        "Ensemble models (Random Forest, XGBoost, LSTM)",
-        "Walk-forward backtesting framework",
-        "Dynamic position sizing with Kelly Criterion",
-      ],
-      technicalDetails: {
-        sharpeRatio: "1.8",
-        annualizedReturn: "14.2%",
-        maxDrawdown: "12.3%",
-        hitRate: "62%",
-      },
-      detailedDescription: "{TODO: Provide methodology deep dive}",
-      methodology: "{TODO: Outline modelling and research process}",
-      results: "{TODO: Summarize backtesting highlights}",
-    },
-    commits: [
-      {
-        sha: "7f8a9bc",
-        message: "Refine macro factor normalization pipeline",
-        date: "2024-07-18",
-        author: "ZealousEar",
-      },
-      {
-        sha: "1c2d3e4",
-        message: "Add Kelly sizing overlay to execution module",
-        date: "2024-06-30",
-        author: "ZealousEar",
-      },
+      "Statistical Time Series based approach extracting 29 latent factors from 127 macroeconomic indicators achieving 84.6% R² with recession early-warning signals. Implemented factor loadings capturing cross-sectional dependencies with 27-31% improvement over baseline ARIMA forecasts.",
+    tags: [
+      "MACHINE LEARNING",
+      "TIME SERIES",
+      "ALPHA RESEARCH",
+      "BACKTESTING",
+      "FACTOR MODELS"
     ],
+    stats: {
+      languages: "R",
+      timeline: "Updated: MAR 2025",
+    },
+    ui: {
+      hover: "green",
+      header: "┌─[fred-md]──────────────────┐",
+      content: [
+        "│ > Dynamic Factor Models    │",
+        "│ > Recession Signals        │",
+        "│ > Macro Forecasting        │",
+        "│ [ENTER] View Details       │",
+        "└────────────────────────────┘",
+      ].join("\n"),
+    },
+    content: {
+      overview:
+        "Dynamic factor framework extracting 29 latent macro factors with strong recession early-warning accuracy.",
+      keyFeatures: [
+        "Ingests 127 macroeconomic indicators into factor loadings",
+        "Delivers 84.6% R² with cross-sectional dependency modelling",
+        "Outperforms ARIMA baselines by 27–31% across validation windows",
+      ],
+      detailedDescription:
+        "Research note demonstrates robust macro factor modelling with emphasis on early warning recession detection and tactical asset allocation support.",
+      methodology:
+        "Kalman filtering, state-space factor extraction, and walk-forward backtesting across NBER-aligned cycles.",
+      results:
+        "Delivers significant lift over traditional ARIMA approaches with stable early warning probabilities.",
+    },
   },
   "horse-racing": {
     slug: "horse-racing",
@@ -219,62 +241,96 @@ export const projectsData: Record<ProjectSlug, ProjectMetadata> = {
       owner: "ZealousEar",
       repo: "horse-racing-prediction",
     },
-    title: "PROJECT 3: Horse Racing Prediction ML Model",
+    title: "Horse Racing Prediction ML Model",
     shortDesc:
-      "LightGBM ensemble achieving 8.7% edge over market odds through 68-feature engineering and Bayesian calibration methods",
-    tags: ["Python", "Machine Learning", "Statistical Modeling", "Feature Engineering", "Probability Theory"],
+      "LightGBM ensemble achieving up to 8.7% edge relative to Betfair market odds through 68-feature engineering and Bayesian calibration methods. Implemented regularization techniques reducing overfit from 97.9% to 74.9% max confidence with calibration error <0.03.",
+    tags: [
+      "MACHINE LEARNING",
+      "STATISTICAL MODELLING",
+      "FEATURE ENGINEERING",
+      "PROBABILITY THEORY",
+      "LIGHTGBM"
+    ],
     stats: {
-      language: "Python",
-      forks: "5",
-      updated: "2024-09-05",
+      languages: "Python",
+      timeline: "Updated: MAR 2025",
     },
     ui: {
-      hover: "green",
-      header: "┌─[horse-racing-pred]────────┐",
+      hover: "cyan",
+      header: "┌─[horse-racing]────────────┐",
       content: [
-        "│ > Statistical Modeling      │",
-        "│ > Kelly Criterion Betting   │",
-        "│ > Market Inefficiencies    │",
+        "│ > LightGBM Ensemble        │",
+        "│ > Odds Calibration         │",
+        "│ > Probability Modelling    │",
         "│ [ENTER] View Details       │",
         "└────────────────────────────┘",
       ].join("\n"),
     },
     content: {
       overview:
-        "LightGBM ensemble achieving 8.7% edge over market odds through 68-feature engineering and Bayesian calibration methods.",
+        "Machine learning betting model delivering measurable edge on Betfair markets via calibrated LightGBM ensembles.",
       keyFeatures: [
-        "ELO rating system for horses and jockeys",
-        "Regularized logistic regression ensembles",
-        "Kelly Criterion position sizing",
-        "Market efficiency monitoring",
-        "Real-time odds scraping and arbitrage detection",
+        "68 engineered features spanning form, pace, and market signals",
+        "Bayesian calibration reducing overconfidence and improving log-loss",
+        "Regularisation strategy cutting maximum confidence from 97.9% to 74.9%",
       ],
-      technicalDetails: {
-        roi: "8.3%",
-        winRate: "31%",
-        kellyFraction: "0.15",
-        profitableBets: "12% of races",
-      },
-      detailedDescription: "{TODO: Describe data sourcing, modelling, and deployment}",
-      dataEngineering: "{TODO: Document data pipeline considerations}",
-      results: "{TODO: Summarize PnL and validation metrics}",
+      detailedDescription:
+        "Project demonstrates disciplined betting model construction with focus on calibration, feature richness, and risk-aware staking.",
+      methodology:
+        "LightGBM ensemble training, Bayesian calibration layers, and Kelly-based staking heuristics.",
+      results:
+        "8.7% edge over market odds with calibration error under 0.03.",
     },
-    commits: [
-      {
-        sha: "9b0c1d2",
-        message: "Improve odds scraping resiliency for late scratches",
-        date: "2024-09-02",
-        author: "ZealousEar",
-      },
-      {
-        sha: "5e6f7g8",
-        message: "Tune ensemble regularization for sprint distances",
-        date: "2024-08-11",
-        author: "ZealousEar",
-      },
+  },
+  "career-rag-pipeline": {
+    slug: "career-rag-pipeline",
+    github: {
+      owner: "ZealousEar",
+      repo: "career-rag-pipeline",
+    },
+    title: "Production ML Platform for NLP Analytics",
+    shortDesc:
+      "Architected microservices platform processing 1000+ concurrent requests with sub-3 second latency. Implemented async FastAPI endpoints, Redis caching and PostgreSQL backend. Built comprehensive NLP pipeline using transformers and LangChain for document analysis.",
+    tags: [
+      "FASTAPI",
+      "MICROSERVICES",
+      "NLP",
+      "LANGCHAIN",
+      "REDIS",
+      "POSTGRESQL",
+      "DOCKER"
     ],
+    stats: {
+      languages: "Python",
+      timeline: "Updated: AUG 2025",
+    },
+    ui: {
+      hover: "green",
+      header: "┌─[career-rag-pipeline]──────┐",
+      content: [
+        "│ > FastAPI Microservices     │",
+        "│ > LangChain NLP             │",
+        "│ > Production Analytics      │",
+        "│ [ENTER] View Details        │",
+        "└────────────────────────────┘",
+      ].join("\n"),
+    },
+    content: {
+      overview:
+        "Production-grade NLP analytics platform with microservices architecture handling high concurrency at sub-3 second latency.",
+      keyFeatures: [
+        "Asynchronous FastAPI endpoints with Redis caching and PostgreSQL",
+        "Transformer-based NLP pipeline orchestrated with LangChain",
+        "Dockerised services enabling horizontal scaling and observability",
+      ],
+      detailedDescription:
+        "Platform underpins document analytics workloads with resilient microservices, ensuring low-latency inference and operational robustness.",
+      methodology:
+        "Event-driven FastAPI design, caching and persistence layers, and NLP workflow management via LangChain and transformer models.",
+      results:
+        "Sustains 1000+ concurrent requests under 3 seconds end-to-end latency.",
+    },
   },
 };
 
 export const projectList = Object.values(projectsData);
-

@@ -27,10 +27,10 @@ export default function ProjectsPage() {
           ))}
         </div>
 
-        <AsciiDivider label="stats refresh" />
-        <TerminalWindow title="github.stats.log" accent="cyan">
+        <AsciiDivider label="metadata refresh" />
+        <TerminalWindow title="projects.meta.log" accent="cyan">
           <p className="text-sm text-terminal-muted">
-            Repository metrics are maintained manually for GitHub Pages deployment. Update star and fork counts in <span className="text-terminal-accent">content/projects/projectsData.ts</span> when publishing changes.
+            Project metadata is maintained manually in <span className="text-terminal-accent">content/projects/projectsData.ts</span>. Update languages, timelines, and tags when publishing changes.
           </p>
         </TerminalWindow>
       </div>

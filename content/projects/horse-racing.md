@@ -1,42 +1,17 @@
-═══════════════════════════════════════════════════════════════
-PROJECT: Statistical Arbitrage in Horse Racing Markets
-STATUS: [ACTIVE] Last Updated: {auto_fetch_date}
-═══════════════════════════════════════════════════════════════
+# Horse Racing Prediction ML Model
 
-## OVERVIEW
+LightGBM ensemble achieving up to 8.7% edge relative to Betfair market odds through 68-feature engineering and Bayesian calibration methods. Implemented regularization techniques reducing overfit from 97.9% to 74.9% max confidence with calibration error <0.03.
 
-{TODO: Provide overview of statistical arbitrage thesis and execution design}
+## Key Components
 
-## TECHNICAL IMPLEMENTATION
+- 68 engineered features covering form, sectional times, market moves, and jockey-trainer signals
+- Bayesian calibration layer reducing overconfidence and improving log-loss stability
+- Kelly Criterion staking overlays informed by calibrated probability outputs
 
-> Languages: Python
-> Libraries: pandas, scikit-learn, NumPy, BeautifulSoup
-> Pipeline: Odds scraping, feature engineering, model inference, staking engine
+## Performance Notes
 
-## KEY FEATURES
+> Language: Python — Updated MAR 2025
 
-- [✓] ELO Rating System for Horses & Jockeys
-- [✓] Regularized Logistic Regression Ensemble
-- [✓] Kelly Criterion Bet Sizing
-- [✓] Real-time Odds Normalization
-- [✓] Market Inefficiency Scoring
-- [✓] Backtesting & Risk Attribution
-
-## PERFORMANCE METRICS
-
-┌─────────────────────────────────┐
-│ ROI:               8.3%         │
-│ Win Rate:          31%          │
-│ Kelly Fraction:    0.15         │
-│ Profitable Bets:   12%          │
-└─────────────────────────────────┘
-
-## DATA ENGINEERING
-
-{TODO: Document data ingestion, cleansing, and feature pipelines}
-
-## RESULTS
-
-{TODO: Summarize trading performance, volatility profile, and drawdown behavior}
-
-
+- Demonstrated 8.7% edge relative to Betfair closing odds
+- Calibration error maintained below 0.03 after regularisation sweep
+- Automated monitoring of model drift and re-training triggers

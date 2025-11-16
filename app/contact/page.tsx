@@ -2,26 +2,7 @@ import AsciiDivider from "@/components/terminal/AsciiDivider";
 import TerminalLayout from "@/components/terminal/TerminalLayout";
 import TerminalWindow from "@/components/terminal/TerminalWindow";
 
-const contactLinks = [
-  {
-    label: "GitHub",
-    value: "github://ZealousEar",
-    href: "https://github.com/ZealousEar",
-    description: "Open-source systems, research code, and market prototypes.",
-  },
-  {
-    label: "LinkedIn",
-    value: "{TODO: Add LinkedIn URL}",
-    href: "#",
-    description: "Professional updates and collaboration requests.",
-  },
-  {
-    label: "Email",
-    value: "{TODO: Add email address}",
-    href: "mailto:{TODO: Add email address}",
-    description: "Direct contact for opportunities and research conversations.",
-  },
-];
+import { contactLinks } from "@/content/contact/contactLinks";
 
 export default function ContactPage() {
   return (

@@ -14,21 +14,8 @@ type ProjectDetailProps = {
   codeSample?: CodeSample;
 };
 
-function formatDate(value?: string) {
-  if (!value) return "--";
-  try {
-    return new Intl.DateTimeFormat("en", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    }).format(new Date(value));
-  } catch {
-    return value;
-  }
-}
 
 export default function ProjectDetail({ project, contentHtml, codeSample }: ProjectDetailProps) {
-  const updatedAt = formatDate(project.stats.updated);
   const commits = project.commits ?? [];
 
   return (
@@ -39,27 +26,31 @@ export default function ProjectDetail({ project, contentHtml, codeSample }: Proj
             <ConsolePrompt symbol=">" path="project/overview">
               <span>{project.shortDesc}</span>
             </ConsolePrompt>
-            <div className="flex flex-wrap gap-2 text-[0.7rem] uppercase tracking-[0.35em] text-terminal-accent">
+            <div className="flex flex-wrap gap-2 text-[0.7rem] uppercase tracking-[0.35em] text-[#7f8bab]">
               {project.tags.map((tag) => (
-                <span key={tag} className="rounded-full border border-terminal-accent/30 px-2 py-1">
+                <span key={tag} className="rounded-full border border-[#7f8bab]/35 px-2 py-1">
                   {tag}
                 </span>
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-3 rounded-terminal border border-terminal-primary/15 bg-terminal-bg/40 p-3 text-xs font-mono text-terminal-white">
+          <div className="grid gap-3 rounded-terminal border border-terminal-primary/15 bg-terminal-bg/40 p-3 text-xs font-mono text-[#7785a7] sm:grid-cols-2">
             <div>
-              <p className="text-terminal-muted uppercase tracking-[0.25em] text-[0.6rem]">Forks</p>
-              <p>{project.stats.forks}</p>
+              <p className="text-terminal-muted uppercase tracking-[0.25em] text-[0.6rem]">Languages</p>
+              <p>{project.stats.languages}</p>
             </div>
-            <div>
-              <p className="text-terminal-muted uppercase tracking-[0.25em] text-[0.6rem]">Language</p>
-              <p>{project.stats.language}</p>
-            </div>
-            <div>
-              <p className="text-terminal-muted uppercase tracking-[0.25em] text-[0.6rem]">Updated</p>
-              <p>{updatedAt}</p>
-            </div>
+            {project.stats.status ? (
+              <div>
+                <p className="text-terminal-muted uppercase tracking-[0.25em] text-[0.6rem]">Status</p>
+                <p>{project.stats.status}</p>
+              </div>
+            ) : null}
+            {project.stats.timeline ? (
+              <div>
+                <p className="text-terminal-muted uppercase tracking-[0.25em] text-[0.6rem]">Timeline</p>
+                <p>{project.stats.timeline}</p>
+              </div>
+            ) : null}
           </div>
         </div>
       </TerminalWindow>

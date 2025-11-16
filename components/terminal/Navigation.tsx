@@ -9,7 +9,6 @@ import { projectList } from "@/content/projects/projectsData";
 import { researchItems } from "@/content/research/researchData";
 import {
   ContactIcon,
-  KaggleIcon,
   MailIcon,
   GithubIcon,
   LinkedInIcon,
@@ -17,6 +16,7 @@ import {
   ResearchIcon,
   type IconProps,
 } from "@/components/terminal/icons";
+import { contactLinks } from "@/content/contact/contactLinks";
 
 type NavItem = {
   key: string;
@@ -25,47 +25,10 @@ type NavItem = {
   render: () => ReactNode;
 };
 
-const contactChannels = [
-  {
-    label: "GitHub",
-    value: "github.com/ZealousEar",
-    href: "https://github.com/ZealousEar",
-    description: "Open-source systems, research code, and market prototypes.",
-    icon: GithubIcon,
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/farhad-chichgar",
-    href: "https://www.linkedin.com/in/farhad-chichgar-9b7568175",
-    description: "Professional updates and collaboration requests.",
-    icon: LinkedInIcon,
-  },
-  {
-    label: "Kaggle",
-    value: "kaggle.com/farhadchichgar",
-    href: "https://www.kaggle.com/farhadchichgar",
-    description: "Machine learning competitions and predictive modelling experiments.",
-    icon: KaggleIcon,
-  },
-  {
-    label: "Email",
-    value: "farhad@chichgar.com",
-    href: "mailto:farhad@chichgar.com",
-    description: "Direct contact for opportunities and research conversations.",
-    icon: MailIcon,
-  },
-];
-
-const formatDate = (value?: string) => {
-  if (!value) return "--";
-  try {
-    return new Intl.DateTimeFormat("en", {
-      month: "short",
-      year: "numeric",
-    }).format(new Date(value));
-  } catch {
-    return value;
-  }
+const contactIconByLabel: Record<string, ComponentType<IconProps>> = {
+  GitHub: GithubIcon,
+  LinkedIn: LinkedInIcon,
+  Email: MailIcon,
 };
 
 const navItems: Record<"projects" | "research" | "contact", NavItem & { icon: ComponentType<IconProps> }> = {
@@ -96,20 +59,20 @@ const navItems: Record<"projects" | "research" | "contact", NavItem & { icon: Co
               <h3 className="text-2xl font-semibold text-terminal-primary">
                 {project.title}
               </h3>
-              <p className="mt-2 text-terminal-muted/90 whitespace-pre-wrap">
-                {project.content.overview.trim()}
+              <p className="mt-2 text-terminal-white/90 whitespace-pre-wrap">
+                {project.shortDesc}
               </p>
-              <div className="mt-3 flex flex-wrap gap-2 text-[0.65rem] uppercase tracking-[0.3em] text-terminal-muted/70">
+              <div className="mt-3 flex flex-wrap gap-2 text-[0.65rem] uppercase tracking-[0.3em] text-[#7f8bab]">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-terminal-muted/40 px-2 py-1">
+                  <span key={tag} className="rounded-full border border-[#7f8bab]/40 px-2 py-1">
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="mt-4 flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-[0.35em] text-terminal-muted/60">
-                <span>Language: {project.stats.language}</span>
-                <span>Forks: {project.stats.forks}</span>
-                <span>Updated {formatDate(project.stats.updated)}</span>
+              <div className="mt-4 flex flex-wrap items-center gap-4 text-xs font-mono uppercase tracking-[0.35em] text-[#7785a7]">
+                <span>Languages: {project.stats.languages}</span>
+                {project.stats.status ? <span>{project.stats.status}</span> : null}
+                {project.stats.timeline ? <span>{project.stats.timeline}</span> : null}
               </div>
               <ConsolePrompt symbol=">" className="mt-4">
                 <span>github://{project.github.owner}/{project.github.repo}</span>
@@ -118,8 +81,8 @@ const navItems: Record<"projects" | "research" | "contact", NavItem & { icon: Co
           ))}
         </div>
         <div className="flex justify-end pt-3">
-          <Link href="/projects" className="terminal-button">
-            view projects page
+          <Link href="/projects" className="terminal-button" target="_blank" rel="noreferrer">
+            open /projects
           </Link>
         </div>
       </div>
@@ -141,26 +104,47 @@ const navItems: Record<"projects" | "research" | "contact", NavItem & { icon: Co
           </p>
         </header>
         <div className="space-y-4">
-          {researchItems.map((item) => (
-            <div
-              key={item.id}
-              className="rounded-terminal border border-terminal-primary/15 bg-terminal-bg/40 p-4 text-sm text-terminal-white transition-colors hover:border-terminal-accent/60 hover:bg-terminal-primary/10"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono uppercase tracking-[0.35em] text-terminal-muted/75">
-                <span>{item.status}</span>
-                <span>{item.year}</span>
+          {researchItems.map((item) => {
+            const Card = (
+              <div
+                className="rounded-terminal border border-terminal-primary/15 bg-terminal-bg/40 p-4 text-sm text-terminal-white transition-colors hover:border-terminal-accent/60 hover:bg-terminal-primary/10"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono uppercase tracking-[0.35em] text-terminal-muted/75">
+                  <span>{item.status}</span>
+                  <span>{item.year}</span>
+                </div>
+                <h3 className="mt-2 text-2xl font-semibold text-terminal-primary">{item.title}</h3>
+                <p className="mt-2 text-terminal-muted/90">{item.summary}</p>
+                <ConsolePrompt symbol=">" status="muted" className="mt-4">
+                  <span>{item.nextSteps}</span>
+                </ConsolePrompt>
               </div>
-              <h3 className="mt-2 text-2xl font-semibold text-terminal-primary">{item.title}</h3>
-              <p className="mt-2 text-terminal-muted/90">{item.summary}</p>
-              <ConsolePrompt symbol=">" status="muted" className="mt-4">
-                <span>{item.nextSteps}</span>
-              </ConsolePrompt>
-            </div>
-          ))}
+            );
+
+            if (item.link) {
+              return (
+                <a
+                  key={item.id}
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block"
+                >
+                  {Card}
+                </a>
+              );
+            }
+
+            return (
+              <div key={item.id}>
+                {Card}
+              </div>
+            );
+          })}
         </div>
         <div className="flex justify-end pt-3">
-          <Link href="/research" className="terminal-button">
-            view research page
+          <Link href="/research" className="terminal-button" target="_blank" rel="noreferrer">
+            open /research
           </Link>
         </div>
       </div>
@@ -177,7 +161,9 @@ const navItems: Record<"projects" | "research" | "contact", NavItem & { icon: Co
           <span>Preferred channels for collaborations, research discussions, and opportunities.</span>
         </ConsolePrompt>
         <ul className="space-y-3">
-          {contactChannels.map((link) => (
+          {contactLinks.map((link) => {
+            const IconComponent = contactIconByLabel[link.label];
+            return (
             <li
               key={link.label}
               className="group rounded-terminal border border-terminal-primary/15 bg-terminal-bg/40 p-4 transition-colors hover:border-terminal-accent/60 hover:bg-terminal-primary/10"
@@ -189,7 +175,7 @@ const navItems: Record<"projects" | "research" | "contact", NavItem & { icon: Co
                 rel={link.href.startsWith("http") ? "noreferrer" : undefined}
               >
                 <span className="flex items-center gap-3 text-xs font-mono uppercase tracking-[0.35em] text-terminal-accent">
-                  {link.icon ? <link.icon className="h-5 w-5 text-terminal-accent" /> : null}
+                  {IconComponent ? <IconComponent className="h-5 w-5 text-terminal-accent" /> : null}
                   {link.label}
                 </span>
                 <span className="text-lg font-semibold text-terminal-primary group-hover:text-terminal-white">
@@ -198,8 +184,14 @@ const navItems: Record<"projects" | "research" | "contact", NavItem & { icon: Co
                 <span className="text-terminal-muted">{link.description}</span>
               </a>
             </li>
-          ))}
+            );
+          })}
         </ul>
+        <div className="flex justify-end pt-3">
+          <Link href="/contact" className="terminal-button" target="_blank" rel="noreferrer">
+            open /contact
+          </Link>
+        </div>
       </div>
     ),
   },

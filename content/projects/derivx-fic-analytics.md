@@ -1,53 +1,17 @@
-═══════════════════════════════════════════════════════════════
-PROJECT: Fixed Income & Derivatives Analytics Platform
-STATUS: [ACTIVE] Last Updated: {auto_fetch_date}
-═══════════════════════════════════════════════════════════════
+# Fixed-Income/FX Derivatives Pricing Platform
 
-## OVERVIEW
+Built production-ready pricing engine for interest rate swaps, FX options and structured products. Implemented curve construction (OIS/IRS), SABR/SVI volatility calibration and risk metrics (PV, DV01) under rate shock scenarios. Interactive 3D volatility surface visualization with scenario analysis.
 
-{TODO: Provide detailed DerivX platform overview}
+## Core Capabilities
 
-## TECHNICAL IMPLEMENTATION
+- Curve construction for OIS/IRS instruments across multiple currencies
+- SABR/SVI volatility surface calibration with stress testing workflows
+- Scenario analysis dashboards with interactive 3D volatility surface exploration
 
-> Languages: Python 3.9+, C++ pricing engine
-> Libraries: NumPy, Pandas, QuantLib, Dash
-> Architecture: Microservices with REST API
+## Implementation Notes
 
-## KEY FEATURES
+> Languages: Python — Updated OCT 2025
 
-- [✓] Black-Scholes-Merton Option Pricing
-- [✓] Monte Carlo Simulation Engine
-- [✓] Greeks Calculation & Visualization
-- [✓] Yield Curve Construction
-- [✓] VaR & CVaR Risk Metrics
-- [✓] Real-time Market Data Integration
-
-## PERFORMANCE METRICS
-
-┌─────────────────────────────────┐
-│ Pricing Speed:     <10ms        │
-│ Accuracy:          99.97%       │
-│ Scenarios/sec:     100,000+     │
-│ Memory Usage:      <500MB       │
-└─────────────────────────────────┘
-
-## MATHEMATICAL MODELS
-
-- Stochastic Differential Equations
-- Ito's Lemma Applications
-- Numerical PDE Solvers
-- American Option Approximations
-
-## DETAILED DESCRIPTION
-
-{TODO: Elaborate on quantitative architecture, data onboarding, validation pipelines, and deployment strategy}
-
-## CHALLENGES
-
-{TODO: Document pricing precision challenges, numerical stability trade-offs, and risk reporting design decisions}
-
-## RESULTS
-
-{TODO: Summarize business impact, operational metrics, and validation outcomes}
-
-
+- End-to-end valuation stack with analytical and Monte Carlo pricing
+- Streamlit command center for traders and quants to interrogate Greeks and scenario outputs
+- Automated rate shock simulations producing PV, DV01, and risk corridor snapshots

@@ -5,26 +5,27 @@ export type ResearchItem = {
   year: string;
   summary: string;
   nextSteps: string;
+  link?: string;
 };
 
 export const researchItems: ResearchItem[] = [
   {
-    id: "regime-vol-surfaces",
-    title: "Regime-Switching Dynamics in Equity Volatility Surfaces",
-    status: "Working Paper",
-    year: "2024",
+    id: "horse-racing-research",
+    title: "Horse Racing Prediction ML Model",
+    status: "Research Paper",
+    year: "2025",
     summary:
-      "Quantifying structural breaks in implied volatility using hierarchical Bayesian models and cross-asset risk factors.",
-    nextSteps: "{TODO: Add publication venue or submission details}",
+      "LightGBM ensemble achieving up to 8.7% edge relative to Betfair market odds through 68-feature engineering and Bayesian calibration methods. Implemented regularization techniques reducing overfit from 97.9% to 74.9% max confidence with calibration error <0.03.",
+    nextSteps: "Download research paper (PDF)",
+    link: "https://github.com/ZealousEar/horse-racing-prediction/blob/main/technical_report.pdf",
   },
   {
-    id: "systematic-credit-risk",
-    title: "Systematic Credit Risk Premia across Macro Cycles",
-    status: "Research Note",
-    year: "2023",
+    id: "macro-dfm-research",
+    title: "Macroeconomic Forecasting with Dynamic Factor Models",
+    status: "Working Paper",
+    year: "2025",
     summary:
-      "Analyzing cross-sectional credit spreads with macro-regime conditioning for systematic allocation strategies.",
-    nextSteps: "{TODO: Provide download link or abstract PDF}",
+      "Statistical Time Series based approach extracting 29 latent factors from 127 macroeconomic indicators achieving 84.6% R² with recession early-warning signals. Implemented factor loadings capturing cross-sectional dependencies with 27-31% improvement over baseline ARIMA forecasts.",
+    nextSteps: "Research paper link coming soon.",
   },
 ];
-

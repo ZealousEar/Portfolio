@@ -1,42 +1,17 @@
-═══════════════════════════════════════════════════════════════
-PROJECT: Hull Tactical Market Regime Prediction
-STATUS: [ACTIVE] Last Updated: {auto_fetch_date}
-═══════════════════════════════════════════════════════════════
+# Hull Tactical S&P 500 Directional Prediction [IN PROGRESS]
 
-## OVERVIEW
+Building ensemble models for daily S&P 500 return prediction in active Kaggle competition. Implementing feature engineering from market indicators including volatility regimes, cross-asset correlations and macroeconomic signals. Experimenting with XGBoost, neural networks and regime-switching models.
 
-{TODO: Provide methodology overview for regime prediction framework}
+## Focus Areas
 
-## TECHNICAL IMPLEMENTATION
+- Feature engineering covering volatility regimes, cross-asset correlations, macroeconomic signals
+- Stacked experimentation across XGBoost, neural networks, and regime-switching ensembles
+- Daily prediction pipeline tuned for Kaggle leaderboard deployment
 
-> Languages: Python, R
-> Libraries: scikit-learn, XGBoost, TensorFlow, statsmodels
-> Infrastructure: Airflow pipelines, S3 feature store, Dockerized inference
+## Current Work
 
-## KEY FEATURES
+> Status: In Progress — Started SEP 2025
 
-- [✓] Market Regime Detection (Hidden Markov Models)
-- [✓] Feature Engineering Across 200+ Indicators
-- [✓] Ensemble Stack (RF, XGBoost, LSTM)
-- [✓] Walk-Forward Cross-Validation
-- [✓] Dynamic Position Sizing (Kelly Criterion)
-- [✓] Risk Overlay with Drawdown Guards
-
-## PERFORMANCE METRICS
-
-┌─────────────────────────────────┐
-│ Sharpe Ratio:       1.8         │
-│ Annualized Return:  14.2%       │
-│ Max Drawdown:       12.3%       │
-│ Hit Rate:           62%         │
-└─────────────────────────────────┘
-
-## METHODOLOGY
-
-{TODO: Detail research design, feature transformations, and validation strategy}
-
-## RESULTS
-
-{TODO: Summarize out-of-sample performance, regime stability, and execution readiness}
-
-
+- Maintaining iterative validation runs and feature ablations
+- Monitoring Kaggle leaderboard performance while refining regime features
+- Preparing documentation for handoff into production-grade research notebooks

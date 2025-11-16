@@ -11,21 +11,40 @@ import { loadProjectMarkdown } from "@/lib/utils";
 export const dynamicParams = false;
 
 const codeSnippets: Record<ProjectSlug, { title: string; language: string; code: string }> = {
-  "derivx-fic-analytics": {
-    title: "// pricing_engine.py",
+  "hull-tactical": {
+    title: "// training_pipeline.py",
     language: "python",
-    code: `class OptionPricer:
-    def __init__(self, spot, strike, rate, vol, maturity):
-        self.S = spot
-        self.K = strike
-        self.r = rate
-        self.sigma = vol
-        self.T = maturity
-
-    def black_scholes_call(self):
-        d1 = (np.log(self.S/self.K) + (self.r + 0.5*self.sigma**2)*self.T) / (self.sigma*np.sqrt(self.T))
-        d2 = d1 - self.sigma * np.sqrt(self.T)
-        return self.S * norm.cdf(d1) - self.K * np.exp(-self.r*self.T) * norm.cdf(d2)
+    code: `def train_daily_models(features, labels):
+    models = [
+        XGBClassifier(max_depth=5, learning_rate=0.05),
+        LSTMEnsemble(hidden_dim=64),
+        RegimeSwitchingModel(n_regimes=3),
+    ]
+    for model in models:
+        model.fit(features, labels)
+    return models
+`,
+  },
+  "derivx-fic-analytics": {
+    title: "// sabr_surface.py",
+    language: "python",
+    code: `def calibrate_sabr_surface(strikes, maturities, vols):
+    params = {}
+    for expiry in maturities:
+        params[expiry] = fit_sabr(skews=strikes, implied_vols=vols[expiry])
+    return params
+`,
+  },
+  "fpl-optimization": {
+    title: "// monte_carlo_scheduler.py",
+    language: "python",
+    code: `def run_monte_carlo(planner, n_runs=2000):
+    results = []
+    for _ in range(n_runs):
+        scenario = planner.sample_scenario()
+        lineup = planner.optimise(scenario)
+        results.append(planner.evaluate(lineup, scenario))
+    return np.mean(results)
 `,
   },
   "fred-md": {
@@ -36,28 +55,12 @@ const codeSnippets: Record<ProjectSlug, { title: string; language: string; code:
         self.n_factors = n_factors
 
     def fit(self, X):
-        # placeholder: PCA init for factors, then Kalman smoothing
+        # placeholder: factor estimation
         pass
 
     def predict_recession_prob(self, X_future):
         # placeholder: early-warning signal
         return 0.0
-`,
-  },
-  "hull-tactical": {
-    title: "// regime_classifier.py",
-    language: "python",
-    code: `class RegimeClassifier:
-    def __init__(self, models):
-        self.models = models
-
-    def fit(self, X, y):
-        for model in self.models:
-            model.fit(X, y)
-
-    def predict(self, X):
-        votes = np.array([model.predict(X) for model in self.models])
-        return stats.mode(votes, keepdims=False)[0]
 `,
   },
   "horse-racing": {
@@ -68,8 +71,19 @@ const codeSnippets: Record<ProjectSlug, { title: string; language: string; code:
         return 0.0
     return max(min(edge / odds, 1.0), 0.0)
 
-def bankroll_update(bankroll: float, stake: float, outcome: bool, odds: float) -> float:
+ def bankroll_update(bankroll: float, stake: float, outcome: bool, odds: float) -> float:
     return bankroll + stake * (odds - 1 if outcome else -1)
+`,
+  },
+  "career-rag-pipeline": {
+    title: "// service_config.py",
+    language: "python",
+    code: `class ServiceConfig(BaseSettings):
+    redis_url: str = "redis://localhost:6379/0"
+    database_url: str
+    max_workers: int = 8
+
+config = ServiceConfig()
 `,
   },
 };
@@ -109,15 +123,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   const markdown = await loadProjectMarkdown(slug);
 
-  const formattedUpdated = project.stats.updated
-    ? new Intl.DateTimeFormat("en", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      }).format(new Date(project.stats.updated))
-    : "{auto_fetch_date}";
-
-  const contentHtml = markdown.html.replaceAll("{auto_fetch_date}", formattedUpdated);
+  const contentHtml = markdown.html;
 
   const codeSample = codeSnippets[slug];
 

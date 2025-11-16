@@ -22,6 +22,7 @@ const config: Config = {
       },
       fontFamily: {
         mono: ["var(--font-terminal)", "JetBrains Mono", "Fira Code", "SFMono-Regular", "Menlo", "monospace"],
+        handwritten: ["var(--font-handwritten)", "Permanent Marker", "Indie Flower", "cursive"],
       },
       boxShadow: {
         "terminal-green": "0 0 20px rgba(0, 255, 65, 0.5)",
