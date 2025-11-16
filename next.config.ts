@@ -1,11 +1,12 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  output: "export",
-  trailingSlash: true,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  basePath: '/Portfolio',  // Your repo name
+  assetPrefix: '/Portfolio/',  // Your repo name
   images: {
-    unoptimized: true,
+    unoptimized: true
   },
-};
+  trailingSlash: true,
+}
 
-export default nextConfig;
+module.exports = nextConfig

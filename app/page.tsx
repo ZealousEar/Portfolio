@@ -6,16 +6,37 @@ import TerminalWindow from "@/components/terminal/TerminalWindow";
 import TypewriterText from "@/components/terminal/TypewriterText";
 
 const typingPhrases = [
-  "Quantitative Finance Engineering",
-  "Systematic Trading Strategy Design",
-  "Derivatives & Risk Analytics",
-  "Applied Machine Learning Research",
+  "Quantitative Research &amp; Alpha Generation",
+  "Statistical Modelling for Financial Markets",
+  "Machine Learning in Systematic Trading",
+  "Risk Model Development &amp; Validation",
+  "Time Series Analysis &amp; Signal Processing",
+  "Data-Driven Investment Strategies",
 ];
 
 const currentWorkItems = [
-  "Building a systematic macro regime detection pipeline with live macro factor ingestion.",
-  "Prototyping intraday derivatives risk dashboards aligned with trading desk workflows.",
-  "Authoring a research note on liquidity-adjusted Kelly sizing for emerging markets.",
+  <>
+    Developing ensemble models for S&P 500 return prediction for the
+    {" "}
+    <a
+      href="https://www.kaggle.com/competitions/hull-tactical-market-prediction/"
+      className="font-semibold transition hover:text-terminal-accent"
+      style={{
+        color: "#00d4ff",
+        textDecoration: "underline",
+        textDecorationThickness: "2px",
+        textUnderlineOffset: "6px",
+      }}
+      target="_blank"
+      rel="noreferrer"
+    >
+      Hull Tactical Kaggle competition
+    </a>
+    .
+  </>,
+  <>
+    Working through <i>Advanced Quantitative Methods for Trading</i> by <i>Giuseppe Paleologo</i>.
+  </>,
 ];
 
 export default function Home() {
@@ -38,8 +59,27 @@ export default function Home() {
           />
           <ConsolePrompt symbol=">" path="~/profile">
             <div className="space-y-3">
-              <p>
-                Farhad Chichgar — quantitative finance engineer focused on building disciplined, math-first trading and risk platforms that can be trusted in production.
+              <p className="text-justify">
+                Farhad Chichgar — MSc Financial Technology & Data Science student at University of
+                Bristol with a fascination for finding signal in noisy markets. My journey into
+                quantitative finance started unconventionally through fantasy sports optimisation,
+                where I discovered that the same mathematical rigour that generates alpha in markets
+                can systematically beat millions of human decision makers. Since 2020, I've been
+                actively investing and experimenting: starting in crypto during the DeFi summer,
+                building positions across different chains, studying MEV bot strategies and learning
+                how smart contract inefficiencies create arbitrage opportunities. This hands on
+                experience with market microstructure spans Uniswap liquidity pools, high frequency
+                DEX arbitrage, and the traditional finance challenges they mirror.
+              </p>
+              <p className="text-justify">
+                I'm drawn to problems at the intersection of statistical rigour and computational
+                efficiency: how do you capture regime changes before they're obvious? Can
+                microstructure patterns predict larger moves? Why do some factors decay while others
+                persist? My risk modelling work at Solytics reinforced that robust models must
+                survive contact with messy, real world data. Outside coursework, I'm working through 
+                Paleologo's <i>Advanced Quantitative Methods for Trading</i> and building ensemble models for the Hull Tactical
+                competition. Seeking a graduate role where intellectual curiosity is valued and where
+                I can contribute to research that makes it to production trading systems. Look below for a peak into my projects, research or any contact information.
               </p>
               <div className="text-xs uppercase tracking-[0.35em] text-terminal-muted">
                 Visa Status Snapshot
@@ -68,8 +108,8 @@ export default function Home() {
         <AsciiDivider label="currently working on" />
         <TerminalWindow title="current_work.log">
           <div className="space-y-2 text-sm text-terminal-white">
-            {currentWorkItems.map((item) => (
-              <p key={item} className="text-terminal-primary">
+            {currentWorkItems.map((item, index) => (
+              <p key={`current-work-${index}`} className="text-terminal-primary">
                 {">"} {item}
               </p>
             ))}
