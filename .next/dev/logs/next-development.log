@@ -1,0 +1,27 @@
+[00:00:00.912] Server  LOG      ✓ Ready in 600ms
+[00:00:03.035] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:03.986] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:27.245] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.274] Server  ERROR    ⨯ "unhandledRejection:" Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.275] Server  ERROR    ⨯ "unhandledRejection: " Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.284] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.285] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.298] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.299] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.312] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.313] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.320] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.321] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.333] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.334] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.340] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.340] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.344] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.344] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.348] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.349] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.353] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.354] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.366] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.368] Server  ERROR   Error: ENOENT: no such file or directory, scandir '/Users/farhad/Code/Projects/Profile/app'
+[00:13:27.401] Server  LOG      ✓ Compiled in 132ms

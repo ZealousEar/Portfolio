@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["file:///Users/farhad/Code/Projects/Profile/components/terminal/MatrixBackground.tsx"],"sourcesContent":["'use client';\n\nimport dynamic from \"next/dynamic\";\n\nconst MatrixRain = dynamic(() => import(\"@/components/effects/MatrixRain\"), {\n  ssr: false,\n  loading: () => null,\n});\n\ntype MatrixBackgroundProps = {\n  enabled?: boolean;\n  opacity?: number;\n};\n\nexport default function MatrixBackground({ enabled = false, opacity = 0.06 }: MatrixBackgroundProps) {\n  if (!enabled) {\n    return null;\n  }\n\n  return <MatrixRain opacity={opacity} />;\n}\n\n\n\n\n\n"],"names":[],"mappings":";;;;;AAEA;;AAFA;;;AAIA,MAAM,aAAa,IAAA,0KAAO;;;;;;IACxB,KAAK;IACL,SAAS,IAAM;;AAQF,SAAS,iBAAiB,EAAE,UAAU,KAAK,EAAE,UAAU,IAAI,EAAyB;IACjG,IAAI,CAAC,SAAS;QACZ,OAAO;IACT;IAEA,qBAAO,8OAAC;QAAW,SAAS;;;;;;AAC9B","debugId":null}}]
+}
